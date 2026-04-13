@@ -1,0 +1,20 @@
+services:
+  tableshift:
+    image: python:3.10-slim
+    container_name: tableshift_env
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sleep infinity
+    stdin_open: true
+    tty: true
+    environment:
+      - HTTP_PROXY=http://host.docker.internal:7897
+      - HTTPS_PROXY=http://host.docker.internal:7897
+      - NO_PROXY=localhost,127.0.0.1,.local
+      - http_proxy=http://host.docker.internal:7897
+      - https_proxy=http://host.docker.internal:7897
+      - no_proxy=localhost,127.0.0.1,.local
+      - GIT_SSL_NO_VERIFY=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
